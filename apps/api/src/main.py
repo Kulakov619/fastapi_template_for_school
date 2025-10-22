@@ -1,4 +1,4 @@
-from typing import Optional
+from api.v1 import examples
 
 import uvicorn
 from fastapi import FastAPI
@@ -10,19 +10,11 @@ app = FastAPI(
     version="1.0",
 )
 
-@app.get(
-    '/{name}',
-    tags=['special methods'],
-    summary='Приветствие автора',
-    description='Описание',
-    response_description='Описание вывода'
-    )
-def read_root(
-        name: str,
-        age: Optional[int] = None) -> dict:
-    result = f"{name} {age}"
-    return {'Hello': result}
-
+app.include_router(
+    examples.router,
+    prefix="/api/v1/examples",
+    tags=["examples"],
+)
 
 if __name__ == '__main__':
     uvicorn.run('main:app', reload=True)
