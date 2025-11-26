@@ -9,9 +9,6 @@ class Author(models.Model):
     """Модель автора книги"""
     first_name = models.CharField('Имя', max_length=100)
     last_name = models.CharField('Фамилия', max_length=100)
-    date_of_birth = models.DateField('Дата рождения', null=True, blank=True)
-    date_of_death = models.DateField('Дата смерти', null=True, blank=True)
-    biography = models.TextField('Биография', blank=True)
 
     class Meta:
         verbose_name = 'Автор'
@@ -39,28 +36,11 @@ class Genre(models.Model):
         return self.name
 
 
-class Publisher(models.Model):
-    """Модель издательства"""
-    name = models.CharField('Название', max_length=200, unique=True)
-    address = models.CharField('Адрес', max_length=300, blank=True)
-    website = models.URLField('Веб-сайт', blank=True)
-
-    class Meta:
-        verbose_name = 'Издательство'
-        verbose_name_plural = 'Издательства'
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name
-
-
 class Book(models.Model):
     """Модель книги (общая информация о книге)"""
     title = models.CharField('Название', max_length=300, db_index=True)
     authors = models.ManyToManyField(Author, verbose_name='Авторы', related_name='books')
     isbn = models.CharField('ISBN', max_length=13, unique=True, help_text='13-значный ISBN код')
-    publisher = models.ForeignKey(Publisher, on_delete=models.SET_NULL, null=True, blank=True,
-                                  verbose_name='Издательство', related_name='books')
     publication_date = models.DateField('Дата публикации', null=True, blank=True)
     genres = models.ManyToManyField(Genre, verbose_name='Жанры', related_name='books')
     language = models.CharField('Язык', max_length=50, default='Русский')
