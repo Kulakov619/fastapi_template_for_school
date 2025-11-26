@@ -182,4 +182,3 @@ class BorrowHistory(models.Model):
         if self.return_date:
             return self.return_date > self.due_date
         return False
-
