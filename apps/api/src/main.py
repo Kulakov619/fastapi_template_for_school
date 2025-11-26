@@ -2,10 +2,11 @@ from api.v1 import examples
 
 import uvicorn
 from fastapi import FastAPI
+from core.config import settings
 
 
 app = FastAPI(
-    title="Simple API",
+    title=settings.service_name,
     description="Simple API",
     version="1.0",
 )
