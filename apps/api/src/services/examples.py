@@ -1,5 +1,6 @@
 import datetime
-from schemas.examples import ExampleResponse, ExampleBase
+
+from schemas.examples import ExampleBase, ExampleResponse
 from utils.encode import encode_base64
 
 

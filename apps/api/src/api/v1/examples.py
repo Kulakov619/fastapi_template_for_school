@@ -1,10 +1,9 @@
-from fastapi import APIRouter, status, Depends
 from typing import Optional
+
+from fastapi import APIRouter, Depends, status
 from schemas.examples import ExampleResponse
 from services.examples import ExamplesService
 from utils.cache import get_service
-from utils.cache import get_service
-
 
 router = APIRouter()
 

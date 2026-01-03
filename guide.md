@@ -10,6 +10,6 @@ pip install -r requirements.txt
 # создаем main.py в корневой папке
 
 # запускаем сервер
-uvicorn main:app --reload
+uvicorn main:app --reload --port 5000
 
 

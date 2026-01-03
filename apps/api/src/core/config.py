@@ -9,9 +9,9 @@ load_dotenv()
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="test_")
-    dev_enviroment: bool = False
-    service_name: str = "service"
+    dev_enviroment: bool = True
+    db_engine_echo: bool = False
+    service_name: str = "lib_api"
     redis_host: str = ...
     redis_port: int = ...
     db_name: str = ...
@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     db_port: int = ...
     db_user: str = ...
     db_password: str = ...
+    request_id_excluded_urls: list[str] = ["/api/v1/auth/health"]
 
     @property
     def db_full_url(self):

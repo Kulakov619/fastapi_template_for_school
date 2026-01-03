@@ -1,6 +1,7 @@
 import asyncio
 import base64
 
+
 async def encode_base64(text: str) -> str:
     """
     Асинхронно кодирует текст в Base64.
